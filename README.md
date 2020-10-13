@@ -1,1 +1,1 @@
-# Бэкенд для Дипломной работы news-explorer-api 
+# Бэкенд Дипломной работы news-explorer-api 

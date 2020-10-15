@@ -8,4 +8,4 @@
 ## Как найти сервер
 
 `публичный IP-адрес` — 130.193.36.129  
-`домен` — https://mesto.grigo.students.nomoreparties.co
+`домен` — https://api.diploma.vit.students.nomoreparties.co

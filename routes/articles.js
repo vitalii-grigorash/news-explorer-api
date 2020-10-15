@@ -11,6 +11,6 @@ const {
 
 router.get("/articles", getArticles);
 router.post("/articles", articleValidation, postArticle);
-router.delete("/articles/articleId", idValidation, deleteArticle);
+router.delete("/articles/:articleId", idValidation, deleteArticle);
 
 module.exports = router;

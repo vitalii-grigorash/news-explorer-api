@@ -13,6 +13,7 @@ const { userValidation, loginValidation } = require("./middlewares/joiValidation
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/NotFoundError");
+const { DB_URL } = require('./config');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -29,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-mongoose.connect("mongodb://localhost:27017/newsexplorerdb", {
+mongoose.connect(DB_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,

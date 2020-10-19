@@ -1,7 +1,7 @@
-const Article = require("../models/article");
-const NotFoundError = require("../errors/NotFoundError");
-const BadRequestError = require("../errors/BadRequestError");
-const ForbiddenError = require("../errors/ForbiddenError");
+const Article = require('../models/article');
+const NotFoundError = require('../errors/NotFoundError');
+const BadRequestError = require('../errors/BadRequestError');
+const ForbiddenError = require('../errors/ForbiddenError');
 
 const getArticles = (req, res, next) => {
   const ownerId = req.user._id;
@@ -35,27 +35,28 @@ const postArticle = (req, res, next) => {
     owner: ownerId,
   })
     .catch(() => {
-      throw new BadRequestError({ message: "Переданы некорректные данные" });
+      throw new BadRequestError({ message: 'Переданы некорректные данные' });
     })
     .then((article) => res.send({ data: article }))
     .catch(next);
 };
 
 const deleteArticle = (req, res, next) => {
-  Article.findById(req.params._id)
-    .orFail(new Error("NotValidArticleId"))
+  Article.findById(req.params.articleId)
+    .select('+owner')
+    .orFail(new Error('NotValidArticleId'))
     .catch((err) => {
-      if (err.message === "NotValidArticleId") {
-        throw new NotFoundError({ message: "Статья не найдена" });
+      if (err.message === 'NotValidArticleId') {
+        throw new NotFoundError({ message: 'Статья не найдена' });
       } else {
-        throw new BadRequestError({ message: "Переданы некорректные данные" });
+        throw new BadRequestError({ message: 'Переданы некорректные данные' });
       }
     })
     .then((article) => {
       if (article.owner.toString() !== req.user._id) {
-        throw new ForbiddenError({ message: "Недостаточно прав для удаления статьи" });
+        throw new ForbiddenError({ message: 'Недостаточно прав для удаления статьи' });
       }
-      Article.findByIdAndDelete(req.params._id)
+      Article.deleteOne(article)
         .then((articleData) => {
           res.send({ data: articleData });
         })

@@ -1,18 +1,18 @@
-require("dotenv").config();
-const express = require("express");
-const rateLimit = require("express-rate-limit");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const helmet = require("helmet");
-const { errors } = require("celebrate");
-const usersRouter = require("./routes/users");
-const articlesRouter = require("./routes/articles");
-const { login, createUser } = require("./controllers/users");
-const { userValidation, loginValidation } = require("./middlewares/joiValidation");
-const { requestLogger, errorLogger } = require("./middlewares/logger");
-const auth = require("./middlewares/auth");
-const NotFoundError = require("./errors/NotFoundError");
+require('dotenv').config();
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
+const { errors } = require('celebrate');
+const usersRouter = require('./routes/users');
+const articlesRouter = require('./routes/articles');
+const { login, createUser } = require('./controllers/users');
+const { userValidation, loginValidation } = require('./middlewares/joiValidation');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+const auth = require('./middlewares/auth');
+const NotFoundError = require('./errors/NotFoundError');
 const { DB_URL } = require('./config');
 
 const { PORT = 3000 } = process.env;
@@ -39,14 +39,14 @@ mongoose.connect(DB_URL, {
 
 app.use(requestLogger);
 
-app.post("/signin", loginValidation, login);
-app.post("/signup", userValidation, createUser);
+app.post('/signin', loginValidation, login);
+app.post('/signup', userValidation, createUser);
 
-app.use("/", auth, usersRouter);
-app.use("/", auth, articlesRouter);
+app.use('/', auth, usersRouter);
+app.use('/', auth, articlesRouter);
 
 app.use(() => {
-  throw new NotFoundError({ message: "Запрашиваемый ресурс не найден" });
+  throw new NotFoundError({ message: 'Запрашиваемый ресурс не найден' });
 });
 
 app.use(errorLogger);

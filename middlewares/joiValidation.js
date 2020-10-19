@@ -1,16 +1,16 @@
-const { celebrate, Joi, CelebrateError } = require("celebrate");
-const validator = require("validator");
+const { celebrate, Joi, CelebrateError } = require('celebrate');
+const validator = require('validator');
 
 const urlValidation = (value) => {
   if (!validator.isURL(value)) {
-    throw new CelebrateError("Некорректный URL");
+    throw new CelebrateError('Некорректный URL');
   }
   return value;
 };
 
 const idValidation = celebrate({
   params: Joi.object().keys({
-    postId: Joi.string().alphanum().length(24).hex(),
+    articleId: Joi.string().alphanum().length(24).hex(),
   }),
 });
 

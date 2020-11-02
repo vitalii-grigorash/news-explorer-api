@@ -19,10 +19,15 @@ const { DB_URL } = require('./config');
 const { PORT = 3000 } = process.env;
 const app = express();
 
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://localhost:3000', 'https://vitalii-grigorash.github.io/news-explorer-frontend/'],
+  credentials: true,
+};
+
 app.use(helmet());
 app.use(cookieParser());
 app.use(cors());
-app.options('*', cors());
+app.use(cors(corsOptions));
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,

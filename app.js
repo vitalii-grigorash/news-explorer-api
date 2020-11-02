@@ -20,6 +20,9 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(helmet());
+app.use(cookieParser());
+app.use(cors());
+app.options('*', cors());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -29,9 +32,6 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(cors());
-app.options('*', cors());
 
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,

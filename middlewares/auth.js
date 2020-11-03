@@ -24,19 +24,3 @@ module.exports = (req, res, next) => {
 
   next();
 };
-
-// module.exports = (req, res, next) => {
-//   const token = req.cookies.jwt;
-//   let payload;
-//   try {
-//     payload = jwt.verify(
-//       token,
-//       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-//     );
-//   } catch (err) {
-//     throw new AuthError({ message: 'Необходима авторизация' });
-//   }
-//   req.user = payload;
-
-//   next();
-// };

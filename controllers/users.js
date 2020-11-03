@@ -70,7 +70,8 @@ const login = (req, res, next) => {
         httpOnly: true,
         sameSite: true,
       })
-        .end();
+      // .end();
+        .send({ message: 'Авторизация прошла успешно.' });
     })
     .catch(next);
 };

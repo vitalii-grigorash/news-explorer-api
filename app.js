@@ -3,7 +3,7 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
@@ -19,23 +19,14 @@ const { DB_URL } = require('./config');
 const { PORT = 3000 } = process.env;
 const app = express();
 
-// const corsOptions = {
-//   origin: ['http://localhost:3000', 'https://localhost:3000', 'https://vitalii-grigorash.github.io/news-explorer-frontend/'],
-//   credentials: true,
-// };
-
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://localhost:3000'],
-  preflightContinue: false,
-  optionsSuccessStatus: 200,
+  origin: ['http://localhost:3000', 'https://localhost:3000', 'https://vitalii-grigorash.github.io/news-explorer-frontend/'],
   credentials: true,
 };
 
 app.use(helmet());
-app.use(cookieParser());
-app.use(cors());
-app.options('*', cors(corsOptions));
-// app.use(cors(corsOptions));
+// app.use(cookieParser());
+app.use(cors(corsOptions));
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,

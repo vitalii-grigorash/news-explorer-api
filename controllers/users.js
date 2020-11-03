@@ -55,9 +55,8 @@ const createUser = (req, res, next) => {
     .catch(next);
 };
 
-const login = (req, res, next) => {
+module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign(
@@ -65,15 +64,30 @@ const login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
-      res.cookie('jwt', token, {
-        maxAge: 3600000,
-        httpOnly: true,
-        sameSite: true,
-      })
-        .end();
+      res.send({ token });
     })
     .catch(next);
 };
+
+// const login = (req, res, next) => {
+//   const { email, password } = req.body;
+
+//   return User.findUserByCredentials(email, password)
+//     .then((user) => {
+//       const token = jwt.sign(
+//         { _id: user._id },
+//         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+//         { expiresIn: '7d' },
+//       );
+//       res.cookie('jwt', token, {
+//         maxAge: 3600000,
+//         httpOnly: true,
+//         sameSite: true,
+//       })
+//         .end();
+//     })
+//     .catch(next);
+// };
 
 module.exports = {
   getUser,

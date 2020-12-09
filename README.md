@@ -33,11 +33,11 @@ POST http://localhost:3000/signup
 
 В теле запроса передать объект вида
 
-    {
-      "email": "example@example.com",
-      "password": "password",
-      "name": "Жак-Ив Кусь",
-    }
+  {
+    "email": "example@example.com",
+    "password": "password",
+    "name": "Жак-Ив Кусь",
+  }
 
 :heavy_check_mark: При успехе в ответе приходит объект пользователя со статусом `201`.
 
@@ -51,10 +51,10 @@ POST http://localhost:3000/signin
 
 В теле запроса передать объект вида
 
-    {
-      "email": "example@example.com",
-      "password": "password"
-    }
+  {
+    "email": "example@example.com",
+    "password": "password"
+  }
 
 :heavy_check_mark: При успехе приходит ответ со статусом `200` и сообщением `Успешная авторизация`.
 
@@ -74,15 +74,15 @@ POST http://localhost:3000/articles
 
 В теле запроса передать объект вида
 
-    {
-      "keyword": "keyword",
-      "title": "title",
-      "text": "text",
-      "date": "18.10.2020",
-      "source": "source",
-      "link": "https://ya.ru/",
-      "image": "https://avatars.mds.yandex.net/get-banana/64225/x25CFuJKZ7D4sr5M4kaU8QjLm_banana_20161021_extensions_05x402x.png/orig"
-    }
+  {
+    "keyword": "keyword",
+    "title": "title",
+    "text": "text",
+    "date": "18.10.2020",
+    "source": "source",
+    "link": "https://ya.ru/",
+    "image": "https://avatars.mds.yandex.net/get-banana/64225/x25CFuJKZ7D4sr5M4kaU8QjLm_banana_20161021_extensions_05x402x.png/orig"
+  }
 
 :heavy_check_mark: При успехе в ответе приходит объект статьи со статусом `201`.
 

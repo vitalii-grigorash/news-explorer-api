@@ -36,7 +36,7 @@ POST http://localhost:3000/signup
   {
     "email": "example@example.com",
     "password": "password",
-    "name": "Жак-Ив Кусь",
+    "name": "Жак-Ив Кусто",
   }
 
 :heavy_check_mark: При успехе в ответе приходит объект пользователя со статусом `201`.

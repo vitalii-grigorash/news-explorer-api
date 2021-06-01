@@ -1,4 +1,4 @@
-# NewsExplorer. REST API
+# NewsExplorer. REST API.
 
 ---
 
